@@ -3,10 +3,10 @@
     source:
       github:
         config-projects:
-          - codilime/contrail-project-config
+          - Juniper/contrail-project-config-dev
         untrusted-projects:
           - codilime/zuul-jobs:
-              shadow: codilime/contrail-project-config
+              shadow: Juniper/contrail-project-config-dev
           - codilime/contrail-zuul-jobs
       gerrit:
         untrusted-projects:
