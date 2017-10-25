@@ -7,6 +7,12 @@
 - name: Ssh test
   command: ssh -vvvv 1.1.1.59
 
+- name: debug1
+  command: id
+
+- name: debug2
+  command: env
+
 - name: upload packages
   synchronize:
     src: "{{ src_dir }}"
