@@ -4,6 +4,9 @@
     port: 443
     timeout: 10
 
+- name: Ssh test
+  command: ssh -vvvv 1.1.1.59
+
 - name: upload packages
   synchronize:
     src: "{{ src_dir }}"
