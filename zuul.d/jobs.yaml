@@ -162,6 +162,8 @@
     run: playbooks/jluk/test-playbook
     post-run:
         - playbooks/jluk/post-playbook
+    roles:
+      - zuul: codilime/zuul-jobs
     nodeset:
       nodes:
         - name: jluk-xenial
