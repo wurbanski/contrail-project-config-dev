@@ -1,3 +1,8 @@
+- hosts: localhost
+  roles:
+    - role: add-fileserver
+      fileserver: "{{ site_deb }}"
+
 - hosts: jluk-xenial
   vars:
     reponame: "{{ zuul.build }}"
