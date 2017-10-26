@@ -15,6 +15,4 @@
     src: "{{ src_dir }}"
     dest: /var/lib/aptly/upload/{{ reponame }}/
     mode: pull
-    rsync_opts:
-      - '--rsh="ssh -l aptly"'
   delegate_to: "1.1.1.59"
