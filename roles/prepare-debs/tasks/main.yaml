@@ -19,7 +19,8 @@
     body_format: json
     status_code: 201
 
-- name: test sync
+- name: send debs to the executor
   synchronize:
-    src: /etc/hosts
-    dest: /tmp
+    src: "{{ src_dir }}"
+    dest: "{{ src_dir }}"
+    mode: pull
