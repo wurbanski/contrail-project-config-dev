@@ -1,18 +1,10 @@
-- name: Verify connectivity to review.opencontrail.org
-  wait_for:
-    host: review.opencontrail.org
-    port: 443
-    timeout: 10
+- name: create destination directory
+  file:
+    state: directory
+    path: /var/lib/aptly/upload/{{ reponame }}/
 
-- name: debug1
-  command: id
-
-- name: debug2
-  command: env
-
-- name: upload packages
+- name: upload packages to aptly
   synchronize:
-    src: "{{ src_dir }}"
+    src: "{{ src_dir }}"/*.deb
     dest: /var/lib/aptly/upload/{{ reponame }}/
     mode: pull
-  delegate_to: "1.1.1.59"

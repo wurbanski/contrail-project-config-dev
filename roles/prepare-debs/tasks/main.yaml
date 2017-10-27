@@ -1,7 +1,13 @@
+- name: create deb dir
+  file:
+    path: "{{ src_dir }}"
+    state: directory
+
 - name: Download dummy package
   get_url:
     url: http://ftp.us.debian.org/debian/pool/main/t/tzdata/tzdata_2017b-1_all.deb
-    dest: /tmp/tzdata.deb
+    dest: "{{ src_dir }}"
+
 - name: Create Aptly repo
   uri:
     url: http://1.1.1.59/api/repos
@@ -12,6 +18,7 @@
     force_basic_auth: yes
     body_format: json
     status_code: 201
+
 - name: test sync
   synchronize:
     src: /etc/hosts

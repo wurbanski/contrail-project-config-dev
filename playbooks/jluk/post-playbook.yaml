@@ -8,12 +8,17 @@
     reponame: "{{ zuul.build }}"
   roles:
     - prepare-debs
-- hosts: "localhost"
+  vars:
+    reponame: "{{ zuul.build }}"
+    src_dir: "./debs"
+
+- hosts: "{{ site_deb }}"
   vars:
     reponame: "{{ zuul.build }}"
     src_dir: "./debs"
   roles:
     - upload-debs
+
 - hosts: jluk-xenial
   vars:
     reponame: "{{ zuul.build }}"
