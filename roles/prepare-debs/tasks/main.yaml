@@ -19,8 +19,14 @@
     body_format: json
     status_code: 201
 
+- name: create deb dir on the executor
+  delegate_to: localhost
+  file:
+    path: "{{ zuul.executor.work_root }}/debs"
+    state: directory
+
 - name: send debs to the executor
   synchronize:
-    src: "{{ src_dir }}"
-    dest: "{{ src_dir }}"
+    src: "{{ src_dir }}/*.deb"
+    dest: "{{ zuul.executor.work_root }}/debs"
     mode: pull
