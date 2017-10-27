@@ -1,12 +1,10 @@
 - name: add packages to repo
   uri:
-    url: http://1.1.1.59/api/repos/{{ reponame }}/files/{{ reponame }}
+    url: http://1.1.1.59/api/repos/{{ reponame }}/file/{{ reponame }}
     method: POST
     user: aptly
     password: aptlypassword
-    body: '{ "Name": "{{ reponame }}" }'
     force_basic_auth: yes
-    body_format: json
     status_code: 201
 - name: publish repo
   uri:
