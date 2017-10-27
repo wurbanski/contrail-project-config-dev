@@ -6,11 +6,9 @@
 - hosts: jluk-xenial
   vars:
     reponame: "{{ zuul.build }}"
+    src_dir: "./debs"
   roles:
     - prepare-debs
-  vars:
-    reponame: "{{ zuul.build }}"
-    src_dir: "./debs"
 
 - hosts: "{{ site_deb }}"
   vars:
