@@ -7,4 +7,3 @@
   synchronize:
     src: "{{ src_dir }}/*.deb"
     dest: /var/lib/aptly/upload/{{ reponame }}/
-    mode: pull
