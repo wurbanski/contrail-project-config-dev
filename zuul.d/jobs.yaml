@@ -159,6 +159,7 @@
 - job:
     name: jluk-test-job
     description: Foo
+    voting: False
     run: playbooks/jluk/test-playbook
     post-run:
         - playbooks/jluk/post-playbook
