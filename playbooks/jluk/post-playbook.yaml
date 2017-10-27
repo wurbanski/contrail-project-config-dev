@@ -10,7 +10,7 @@
   roles:
     - prepare-debs
 
-- hosts: "{{ site_deb }}"
+- hosts: "{{ site_deb.fqdn }}"
   vars:
     reponame: "{{ zuul.build }}"
     src_dir: "./debs"
