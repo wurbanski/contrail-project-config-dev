@@ -5,5 +5,5 @@
 
 - name: upload packages to aptly
   synchronize:
-    src: "{{ src_dir }}/*.deb"
+    src: "{{ zuul.executor.work_root }}/debs/*.deb"
     dest: /var/lib/aptly/upload/{{ reponame }}/
