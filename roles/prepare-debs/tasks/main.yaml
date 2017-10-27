@@ -14,7 +14,7 @@
     method: POST
     user: aptly
     password: aptlypassword
-    body: '{ "Name": "{{ reponame }}" }'
+    body: '{ "Name": "{{ reponame }}", "DefaultDistribution": "xenial" }'
     force_basic_auth: yes
     body_format: json
     status_code: 201

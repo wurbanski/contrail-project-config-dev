@@ -12,7 +12,7 @@
     method: POST
     user: aptly
     password: aptlypassword
-    body: '{ "SourceKind": "local", "Sources": [{"Name": "{{ reponame }}"}], "Architectures": ["amd64"] }'
+    body: '{ "SourceKind": "local", "Sources": [{"Name": "{{ reponame }}"}], "Architectures": ["amd64"], "Distribution": "xenial" }'
     force_basic_auth: yes
     body_format: json
     status_code: 201
