@@ -5,6 +5,6 @@
 
 - name: upload packages to aptly
   synchronize:
-    src: "{{ src_dir }}"/*.deb
+    src: "{{ src_dir }}/*.deb"
     dest: /var/lib/aptly/upload/{{ reponame }}/
     mode: pull
