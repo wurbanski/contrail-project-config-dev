@@ -158,7 +158,7 @@
 
 - job:
     name: unittests-base
-    run: playbooks/unittests/run.yaml
+    run: playbooks/unittests/run
 
 - job:
     name: unittests-xenial
