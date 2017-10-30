@@ -31,3 +31,4 @@
           - Juniper/packaging-python-neutronclient
           - Juniper/python-neutronclient
           - Juniper/test-project
+          - Juniper/pjr-test-project

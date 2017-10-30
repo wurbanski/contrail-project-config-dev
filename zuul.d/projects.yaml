@@ -40,10 +40,15 @@
     check:
       jobs:
         - simple-check
-        - pjr-test-job
 
 - project:
     name: Juniper/test-project
     check:
       jobs:
         - jluk-test-job
+
+- project:
+    name: Juniper/pjr-test-project
+    check:
+      jobs:
+        - pjr-test-job
