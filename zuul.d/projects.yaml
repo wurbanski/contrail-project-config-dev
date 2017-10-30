@@ -4,6 +4,7 @@
       jobs:
         - contrail-controller-build-ubuntu-xenial
         - contrail-controller-build-ubuntu-xenial-bare
+        - unittest-xenial
 
 - project:
     name: Juniper/contrail-build
