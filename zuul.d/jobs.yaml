@@ -157,6 +157,19 @@
           entry: "deb http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/mitaka main"
 
 - job:
+    name: unittests-base
+    run: playbooks/unittests/run.yaml
+
+- job:
+    name: unittests-xenial
+    parent: unittests-base
+    branches: ^master$
+    nodeset:
+      nodes:
+        - name: jluk-xenial
+          label: jluk-xenial
+
+- job:
     name: jluk-test-job
     description: Foo
     voting: False
