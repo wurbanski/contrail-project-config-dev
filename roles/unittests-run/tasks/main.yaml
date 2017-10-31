@@ -9,7 +9,8 @@
 
 - name: Send unittest scripts
   copy:
-    src: *
-    dest: .
+    src: "*"
+    dest: "."
+
 - name: Run unittest script
   script: contrail-unittests-job.sh
