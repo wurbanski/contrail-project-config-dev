@@ -2,9 +2,9 @@
     name: Juniper/contrail-controller
     check:
       jobs:
-        - contrail-controller-build-ubuntu-xenial
-        - contrail-controller-build-ubuntu-xenial-bare
         - unittests-xenial
+        #- contrail-controller-build-ubuntu-xenial
+        #- contrail-controller-build-ubuntu-xenial-bare
 
 - project:
     name: Juniper/contrail-build
