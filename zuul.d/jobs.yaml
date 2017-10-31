@@ -195,6 +195,16 @@
         - name: pjr-xenial
           label: pjr-xenial
 
+- job:
+    name: package-build-publish-pjr-xenial
+    parent: package-build-publish-ubuntu-base
+    vars:
+      docker_registry: "1.1.1.70:5000/"  # mind the trailing slash
+      docker_image: "ubuntu:xenial"
+    nodeset:
+      nodes:
+        - name: pjr-xenial
+          label: pjr-xenial
 
 - job:
     name: kklimonda-test-job
