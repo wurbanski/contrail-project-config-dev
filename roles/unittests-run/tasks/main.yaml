@@ -1,3 +1,12 @@
+- name: Debug environment command
+  shell: env
+
+- name: Debug pwd command
+  shell: pwd
+
+- name: Debug set command
+  shell: set
+
 - name: Send unittest scripts
   copy:
     src: *
