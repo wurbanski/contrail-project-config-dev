@@ -39,4 +39,4 @@ providers:
             labels: pjr-xenial
             host-key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3HNgoUnNuux0kwbET3uIavDXFh5YZ6ycJCcvus86LGKncI9k4mEXwACHXqAQIxQOKHYUGrEP3qUm1n+4zPuMwotfhUb9lkr523kvUUKvXmFNG3140LWPLZrrwldMRwcyMUSxCZMX2FI9/VofxzxldD12tDJQ1c2VSQZt4OAUc6CgTCMQ1ozRoOqYXt4wSCSIStwLmQTYrAcyVC1QVfrBBabj1wdWSPfQSbfiDIfZW1MfWcTlxoCuOWHAiyhLoKknWfSySyOWOoFyzEkqfOYuFalYzEPvNk4/I/lDDre52lNwFRkuqOwy3PKCdjB6SxSprk5YXxVUhBrtBO3m82Oyb
             username: zuul
-            max-parallel-jobs: 1
+            max-parallel-jobs: 2
