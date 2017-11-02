@@ -1,7 +1,7 @@
 - name: Hard-link gerrit repositories into expected structure
   synchronize: |
     src="{{ ansible_env.HOME }}/src/review2.opencontrail.org/Juniper/{{ item.src }}"
-    dest="{{ ansible_env.HOME }}/tmp/{{ item.dest }}"
+    dest="{{ ansible_env.HOME }}/repo/{{ item.dest }}"
   with_items:
     - { src: 'contrail-controller/', dest: 'controller' }
     - { src: 'contrail-build/', dest: 'tools/build' }
@@ -17,7 +17,7 @@
 - name: Hard-link github repositories into expected structure
   synchronize: |
     src="{{ ansible_env.HOME }}/src/github.com/Juniper/{{ item.src }}"
-    dest="{{ ansible_env.HOME }}/tmp/{{ item.dest }}"
+    dest="{{ ansible_env.HOME }}/repo/{{ item.dest }}"
   with_items:
     - { src: 'contrail-nova-extensions/', dest: 'openstack/nova_extensions' }
   delegate_to: "{{ ansible_default_ipv4.address }}"

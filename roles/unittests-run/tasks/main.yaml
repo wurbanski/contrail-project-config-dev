@@ -7,6 +7,9 @@
 - name: Debug set command
   shell: set
 
+- name: Debug ls command
+  shell: ls
+
 - name: Send unittest scripts
   copy:
     src: "{{ item }}"
@@ -16,3 +19,5 @@
 
 - name: Run unittest script
   script: contrail-unittests-job.sh
+  environment:
+    WORKSPACE: "{{ ansible_env.HOME }}"

@@ -158,6 +158,7 @@
 
 - job:
     name: unittests-base
+    pre-run: playbooks/contrail-controller/pre
     run: playbooks/unittests/run
 
 - job:

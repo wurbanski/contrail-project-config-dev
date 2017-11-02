@@ -2,19 +2,15 @@
 
 set -o pipefail
 
-source /usr/local/jenkins/slave_scripts/ci-infra/ci-utils.sh
-
 function ci_exit() {
     exit_code=$1
     if [ -z $exit_code ]; then
         exit_code=0
     fi
-    test_wait
-    archive_failed_test_logs
 
-    JENKINS_JOB_N=$(basename $JOB_URL)
+    JENKINS_JOB_N=$(basename "$JOB_URL")
     if [ "$exit_code" == "0" ]; then
-        rm -rf $WORKSPACE/* $WORKSPACE/.* 2>/dev/null
+        #rm -rf $WORKSPACE/* $WORKSPACE/.* 2>/dev/null
         echo Success
         log_job_info_in_gerrit "Completed Jenkins job $JENKINS_JOB_N with SUCCESS"
     else
@@ -25,7 +21,7 @@ function ci_exit() {
     exit $exit_code
 }
 
-if [ -f $SKIP_JOBS ]; then
+if [ -f "$SKIP_JOBS" ]; then
     echo Jobs skipped due to presence of file $SKIP_JOBS
     ci_exit
 fi
@@ -33,18 +29,18 @@ fi
 function archive_failed_test_logs() {
     LOGFILE="unit_test_logs.tgz"
     find $WORKSPACE/repo/build -name "*.log" -o -name "*.err" |\grep test |  xargs tar --ignore-failed-read -zcf $WORKSPACE/$LOGFILE
-    if [ ! -f $WORKSPACE/$LOGFILE ]; then
+    if [ ! -f "$WORKSPACE/$LOGFILE" ]; then
         return
     fi
-    if [ -z $BUILD_NUMBER ]; then
+    if [ -z "$BUILD_NUMBER" ]; then
         BUILD_NUMBER=0
     fi
     DST_DIR=/ci-admin/unit_test_logs/$JOB_NAME/$BUILD_NUMBER
 }
 
 function display_test_results() {
-    log=$1
-    fail_log=$WORKSPACE/$(basename $log .log)-FAIL.log
+    log="$1"
+    fail_log=$WORKSPACE/$(basename "$log" .log)-FAIL.log
 
     echo "*****************************************************************"
     echo "Displaying test results from: $log"
@@ -79,7 +75,7 @@ function analyze_test_results() {
 }
 
 function determine_retry_list() {
-    f=$1
+    f="$1"
     retry_list=$WORKSPACE/retry_tests.txt
 
     grep --color=no -Ew 'FAIL|TIMEOUT' $f \
@@ -187,7 +183,7 @@ function run_unittest() {
     [ -d $PIP_CACHE ] && rm -rf $PIP_CACHE
 
     # Find and run relevant tests.
-    UNIT_TESTS=$(/usr/local/jenkins/slave_scripts/contrail-unittests-gather.rb)
+    UNIT_TESTS=$(./contrail-unittests-gather.rb)
     exit_code=$?
     if [ "$exit_code" != "0" ]; then
         echo "ERROR: Cannot determine unit-tests to run, exiting"
