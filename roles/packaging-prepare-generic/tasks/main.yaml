@@ -37,7 +37,7 @@
   shell: |
     docker exec --user root:root builder sh -c '
       apt-get install --no-install-recommends --assume-yes \
-        devscripts equivs libwww-perl build-essential'
+      devscripts equivs libwww-perl build-essential libdistro-info-perl'
 
 - name: Create project directory in the workplace
   file:
