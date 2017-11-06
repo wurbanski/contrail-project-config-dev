@@ -165,6 +165,7 @@
     name: unittests-xenial
     parent: unittests-base
     branches: ^master$
+    voting: False
     nodeset:
       nodes:
         - name: jluk-xenial
