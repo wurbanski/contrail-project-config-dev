@@ -160,6 +160,15 @@
     name: unittests-base
     pre-run: playbooks/contrail-controller/pre
     run: playbooks/unittests/run
+    required-projects:
+      - Juniper/contrail-build
+      - Juniper/contrail-controller
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-third-party
+      - Juniper/contrail-packages
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-nova-vif-driver
 
 - job:
     name: unittests-xenial
