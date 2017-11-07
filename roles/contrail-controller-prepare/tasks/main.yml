@@ -1,3 +1,12 @@
+- name: Create directory structure for rsync
+  file:
+    path: "{{ ansible_env.HOME }}/repo/{{ item }}"
+    state: directory
+  with_items:
+    - ""
+    - "tools"
+    - "openstack"
+
 - name: Hard-link gerrit repositories into expected structure
   synchronize: |
     src="{{ ansible_env.HOME }}/src/review2.opencontrail.org/Juniper/{{ item.src }}"
