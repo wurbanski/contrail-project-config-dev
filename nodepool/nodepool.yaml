@@ -1,10 +1,13 @@
+elements-dir: /etc/nodepool/elements
+images-dir: /opt/nodepool_dib
+
 zookeeper-servers:
   - host: zuulv3-dev.opencontrail.org
     port: 3389
-  - host: nodepool.opencontrail.org
 
-elements-dir: /etc/nodepool/elements
-images-dir: /opt/nodepool_dib
+cron:
+  cleanup: '*/1 * * * *'
+  check:   '*/15 * * * *'
 
 labels:
   - name: ubuntu-xenial
@@ -13,6 +16,21 @@ labels:
     min-ready: 0
   - name: pjr-xenial
     min-ready: 0
+  - name: ubuntu-xenial-small
+    image: ubuntu-xenial
+    min-ready: 0
+    provides:
+      - name: juniper-contrail-ci
+  - name: ubuntu-xenial-builder
+    image: ubuntu-xenial
+    min-ready: 1
+    provides:
+      - name: juniper-contrail-ci
+  - name: ubuntu-trusty-builder
+    image: ubuntu-trusty
+    min-ready: 0
+    provides:
+      - name: juniper-contrail-ci
 
 providers:
   - name: juniper-contrail-ci
