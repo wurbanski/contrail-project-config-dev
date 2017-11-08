@@ -5,6 +5,9 @@
         - unittests-xenial
         #- contrail-controller-build-ubuntu-xenial
         #- contrail-controller-build-ubuntu-xenial-bare
+    experimental:
+      jobs:
+        - kklimonda-test-job
 
 - project:
     name: Juniper/contrail-build

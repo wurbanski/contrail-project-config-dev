@@ -50,6 +50,19 @@
         status: 'failure'
 
 - pipeline:
+    name: experimental
+    description: On-demand pipeline for testing jobs.
+    manager: independent
+    precedence: normal
+    trigger:
+      gerrit:
+        - event: comment-added
+          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*check experimental\s*$
+          branch:
+            - ^master$
+            - ^contrail/.*$
+
+- pipeline:
     name: release-os-package
     description: |
       Build and upload a new version of the upstream OpenStack package
