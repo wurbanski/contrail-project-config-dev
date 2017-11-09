@@ -1,4 +1,4 @@
-- hosts: jluk-xenial
+- hosts: ubuntu-xenial
   vars:
     reponame: "{{ zuul.build }}"
   roles:

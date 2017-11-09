@@ -72,6 +72,7 @@ providers:
 
   - name: static-cl-os
     driver: static
+    diskimages: []
     pools:
       - name: cl-openstack
         nodes:

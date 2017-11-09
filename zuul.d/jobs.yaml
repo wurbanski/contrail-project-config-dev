@@ -177,8 +177,8 @@
     voting: False
     nodeset:
       nodes:
-        - name: jluk-xenial
-          label: jluk-xenial
+        - name: ubuntu-xenial
+          label: ubuntu-xenial
 
 - job:
     name: jluk-test-job
@@ -191,8 +191,8 @@
       - zuul: codilime/zuul-jobs
     nodeset:
       nodes:
-        - name: jluk-xenial
-          label: jluk-xenial
+        - name: ubuntu-xenial
+          label: ubuntu-xenial
     secrets:
       - site_deb
 

@@ -3,7 +3,7 @@
     - role: add-fileserver
       fileserver: "{{ site_deb }}"
 
-- hosts: jluk-xenial
+- hosts: ubuntu-xenial
   vars:
     reponame: "{{ zuul.build }}"
     src_dir: "./debs"
@@ -17,7 +17,7 @@
   roles:
     - upload-debs
 
-- hosts: jluk-xenial
+- hosts: ubuntu-xenial
   vars:
     reponame: "{{ zuul.build }}"
   roles:
