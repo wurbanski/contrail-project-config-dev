@@ -160,7 +160,8 @@ function determine_retry_list() {
 
 # Run unittests
 function run_unittest() {
-    set_x on
+    _EXTRA_UNITTESTS=$(set +o | grep xtrace)
+    set +o xtrace
 
     # Goto the repo top directory.
     cd $WORKSPACE/repo
@@ -183,7 +184,7 @@ function run_unittest() {
     [ -d $PIP_CACHE ] && rm -rf $PIP_CACHE
 
     # Find and run relevant tests.
-    UNIT_TESTS=$(./contrail-unittests-gather.rb)
+    UNIT_TESTS=$($WORKSPACE/contrail-unittests-gather.rb)
     exit_code=$?
     if [ "$exit_code" != "0" ]; then
         echo "ERROR: Cannot determine unit-tests to run, exiting"
@@ -194,7 +195,6 @@ function run_unittest() {
         UNIT_TESTS=test
     fi
 
-    set_x off
     logfile=$WORKSPACE/scons_test.log
     echo scons -k -j $SCONS_JOBS $UNIT_TESTS
     scons -k -j $SCONS_JOBS $UNIT_TESTS 2>&1 | tee $logfile
@@ -233,6 +233,8 @@ function run_unittest() {
     echo "info: displaying retry unit-test results"
     display_test_results $retrylogfile
     ci_exit $exit_status
+
+    _XTRACE_UNITTESTS
 }
 
 function main() {
