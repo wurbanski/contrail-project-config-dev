@@ -11,6 +11,10 @@ cron:
 
 labels:
   - name: ubuntu-xenial
+    image: ubuntu-xenial
+    min-ready: 1
+    provides:
+      - name: juniper-contrail-ci
     min-ready: 0
   - name: jluk-xenial
     min-ready: 0
@@ -54,6 +58,11 @@ providers:
         networks:
           - ci-zuulv3-internal
         labels:
+          - name: ubuntu-xenial
+            flavor-name: m1.small
+            diskimage: ubuntu-xenial
+            console-log: True
+            key-name: ci-infra-shared-key
           - name: ubuntu-xenial-small
             flavor-name: m1.small
             diskimage: ubuntu-xenial
