@@ -1,6 +1,6 @@
 - name: Verify connectivity to review.opencontrail.org
   wait_for:
-    host: review.opencontrail.org
-    port: 29418
+    host: review2.opencontrail.org
+    port: 7999
     timeout: 10
 

@@ -6,7 +6,7 @@ cron:
   check:   '*/15 * * * *'
 
 zookeeper-servers:
-  - host: zuulv3.opencontrail.org
+  - host: zuulv3-dev.opencontrail.org
     port: 3389
 
 labels:
