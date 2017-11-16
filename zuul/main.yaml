@@ -4,10 +4,10 @@
     source:
       github:
         config-projects:
-          - Juniper/contrail-project-config
+          - Juniper/contrail-project-config-dev
         untrusted-projects:
           - codilime/zuul-jobs:
-              shadow: Juniper/contrail-project-config
+              shadow: Juniper/contrail-project-config-dev
           - codilime/contrail-zuul-jobs
           - Juniper/contrail-common
       gerrit:
