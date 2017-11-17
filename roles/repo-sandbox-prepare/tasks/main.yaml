@@ -1,0 +1,33 @@
+- set_fact:
+    executor_sandbox_path: "{{ zuul.executor.src_root }}/{{ packaging.target_dir }}"
+    worker_sandbox_path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
+  delegate_to: localhost
+
+- name: create sandbox root dir
+  file:
+    path: "{{ executor_sandbox_path }}"
+    state: directory
+  delegate_to: localhost
+
+- name: repo init
+  script: ./repo init -u https://github.com/Juniper/contrail-vnc
+  args:
+    chdir: "{{ executor_sandbox_path }}"
+  delegate_to: localhost
+
+- name: change the remote url in repo's manifest.xml
+  command: sed -is 's/fetch="\.\."/fetch="file://{{ zuul.executor.src_root }}/github.com/Juniper"/' {{ executor_sandbox_path }}/.repo/manifest.xml
+  args:
+    chdir: "{{ executor_sandbox_path }}"
+  delegate_to: localhost
+
+- name: repo sync
+  script: ./repo sync
+  args:
+    chdir: "{{ executor_sandbox_path }}"
+  delegate_to: localhost
+
+- name: send the sandbox to the worker node
+  synchronize:
+    src: "{{ executor_sandbox_path }}"
+    dest: "{{ worker_sandbox_path }}"

@@ -95,3 +95,23 @@
       nodes:
         - name: builder
           label: ubuntu-trusty-builder
+
+- job:
+    name: contrail-vnc-build-repo-test
+    voting: False
+    required-projects:
+      - Juniper/contrail-build
+      - Juniper/contrail-controller
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-third-party
+      - Juniper/contrail-packages
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-common
+    run: playbooks/repo-test/contrail
+    post-run: playbooks/repo-test/post
+    nodeset:
+      nodes:
+        - name: builder
+          label: ubuntu-trusty-builder
