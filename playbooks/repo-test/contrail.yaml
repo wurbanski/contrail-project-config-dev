@@ -1,5 +1,4 @@
 - hosts: all
   roles:
     - contrail-common-libs
-    - contrail-controller-hacks
     - repo-sandbox-prepare
