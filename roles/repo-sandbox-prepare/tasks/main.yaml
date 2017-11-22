@@ -3,7 +3,7 @@
     zuul: "{{ zuul }}"
 
 - set_fact:
-    executor_sandbox_path: "{{ zuul.executor.src_root }}/{{ packaging.target_dir }}"
+    executor_sandbox_path: "{{ zuul.executor.work_root }}/{{ packaging.target_dir }}"
     worker_sandbox_path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
   delegate_to: localhost
 
@@ -20,7 +20,7 @@
   delegate_to: localhost
 
 - name: change the remote url in repo's manifest.xml
-  command: sed -is 's/fetch="\.\."/fetch="file://{{ zuul.executor.src_root }}/github.com/Juniper"/' {{ executor_sandbox_path }}/.repo/manifest.xml
+  command: sed -is 's/fetch="\.\."/fetch="file://{{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper"/' {{ executor_sandbox_path }}/.repo/manifest.xml
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
