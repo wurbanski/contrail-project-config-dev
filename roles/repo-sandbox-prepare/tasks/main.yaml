@@ -9,7 +9,7 @@
 
 - name: copy repo script
   copy:
-    src: repo
+    src: "{{ role_path }}/files/repo"
     dest: "{{ executor_sandbox_path }}"
   delegate_to: localhost
 
