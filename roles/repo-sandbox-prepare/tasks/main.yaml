@@ -14,7 +14,7 @@
   delegate_to: localhost
 
 - name: repo init
-  script: ./repo init -u https://github.com/Juniper/contrail-vnc
+  script: repo init -u https://github.com/Juniper/contrail-vnc
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
