@@ -10,7 +10,7 @@
 - name: copy repo script
   copy:
     src: repo
-    dst: "{{ executor_sandbox_path }}"
+    dest: "{{ executor_sandbox_path }}"
   delegate_to: localhost
 
 - name: create sandbox root dir
