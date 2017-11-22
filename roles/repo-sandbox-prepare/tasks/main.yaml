@@ -2,6 +2,9 @@
   contrail_packaging:
     zuul: "{{ zuul }}"
 
+- name: debug filesystems
+  command: mount
+
 - set_fact:
     executor_sandbox_path: "{{ zuul.executor.work_root }}/{{ packaging.target_dir }}"
     worker_sandbox_path: "{{ ansible_env.HOME }}/{{ packaging.target_dir }}"
