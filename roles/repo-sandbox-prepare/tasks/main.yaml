@@ -17,8 +17,14 @@
     state: directory
   delegate_to: localhost
 
+- name: copy repo script
+  copy:
+    src: repo
+    dest: "{{ executor_sandbox_path }}"
+  delegate_to: localhost
+
 - name: repo init
-  script: ./repo init -u https://github.com/Juniper/contrail-vnc
+  command: ./repo init -u https://github.com/Juniper/contrail-vnc
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
