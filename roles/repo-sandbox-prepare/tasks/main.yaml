@@ -21,6 +21,7 @@
   copy:
     src: repo
     dest: "{{ executor_sandbox_path }}"
+    mode: preserve
   delegate_to: localhost
 
 - name: repo init
