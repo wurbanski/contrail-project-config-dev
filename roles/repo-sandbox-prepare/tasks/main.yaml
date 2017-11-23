@@ -37,7 +37,7 @@
   delegate_to: localhost
 
 - name: repo sync
-  script: ./repo sync
+  command: ./repo sync
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
