@@ -31,7 +31,7 @@
   delegate_to: localhost
 
 - name: change the remote url in repo's manifest.xml
-  command: sed -is 's/fetch="\.\."/fetch="file://{{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper"/' {{ executor_sandbox_path }}/.repo/manifest.xml
+  command: sed -is 's|fetch="\.\."|fetch="file://{{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper"|' {{ executor_sandbox_path }}/.repo/manifest.xml
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
