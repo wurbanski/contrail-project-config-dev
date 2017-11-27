@@ -1,4 +1,4 @@
-- name: Add review.opencontrail.org remote
+- name: Add review2.opencontrail.org remote
   shell: git remote add gerrit https://review2.opencontrail.org/Juniper/{{ item }}
   args:
     chdir: "{{ ansible_env.HOME }}/src/review2.opencontrail.org/Juniper/{{ item }}"
