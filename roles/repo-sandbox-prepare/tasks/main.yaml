@@ -17,11 +17,14 @@
     state: directory
   delegate_to: localhost
 
-- name: copy repo script
+- name: copy scripts
   copy:
-    src: repo
+    src: "{{ item }}"
     dest: "{{ executor_sandbox_path }}"
     mode: preserve
+  with_items:
+    - repo
+    - manifest_translator.py
   delegate_to: localhost
 
 - name: repo init
@@ -30,8 +33,14 @@
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
 
-- name: change the remote url in repo's manifest.xml
-  command: sed -is 's|fetch="\.\."|fetch="file://{{ zuul.executor.src_root }}/{{ zuul.project.canonical_hostname }}/Juniper"|' {{ executor_sandbox_path }}/.repo/manifest.xml
+- name: dump zuul variables to a file
+  copy:
+    content: "{{ zuul }}"
+    dest: "{{ executor_sandbox_path }}/zuul_var.yaml"
+  delegate_to: localhost
+
+- name: apply changes to the manifest.xml
+  command: ./manifest_translator.py ./zuul_var.yaml {{ executor_sandbox_path }}/.repo/manifest.xml
   args:
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
