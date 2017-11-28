@@ -50,6 +50,15 @@
     chdir: "{{ executor_sandbox_path }}"
   delegate_to: localhost
 
+- name: Clean-up auxiliary repo files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - repo
+    - manifest_translator.py
+    - zuul_var.yaml
+
 - name: send the sandbox to the worker node
   synchronize:
     src: "{{ executor_sandbox_path }}"
