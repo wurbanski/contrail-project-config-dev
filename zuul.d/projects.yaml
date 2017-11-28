@@ -3,7 +3,6 @@
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
-        - contrail-vnc-build-repo-test
 
 - project:
     name: Juniper/contrail-vrouter

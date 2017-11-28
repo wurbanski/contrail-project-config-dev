@@ -77,27 +77,7 @@
           label: ubuntu-xenial-builder
 
 - job:
-    name: contrail-vnc-build-unittest-ubuntu-trusty
-    voting: False
-    required-projects:
-      - Juniper/contrail-build
-      - Juniper/contrail-controller
-      - Juniper/contrail-generateDS
-      - Juniper/contrail-third-party
-      - Juniper/contrail-packages
-      - Juniper/contrail-sandesh
-      - Juniper/contrail-vrouter
-      - Juniper/contrail-nova-vif-driver
-      - Juniper/contrail-common
-    run: playbooks/unittest/contrail
-    post-run: playbooks/unittest/post
-    nodeset:
-      nodes:
-        - name: builder
-          label: ubuntu-trusty-builder
-
-- job:
-    name: contrail-vnc-build-repo-test
+    name: contrail-vnc-prepare-repo-sandbox
     voting: False
     required-projects:
       - Juniper/contrail-api
@@ -118,8 +98,14 @@
       - Juniper/contrail-web-core
       - Juniper/contrail-web-server-manager
       - Juniper/contrail-web-storage
-    run: playbooks/repo-test/contrail
-    post-run: playbooks/repo-test/post
+    run: playbooks/prepare-repo-sandbox/prepare-repo-sandbox
+
+- job:
+    name: contrail-vnc-build-unittest-ubuntu-trusty
+    voting: False
+    parent: contrail-vnc-prepare-repo-sandbox
+    run: playbooks/unittest/contrail
+    post-run: playbooks/unittest/post
     nodeset:
       nodes:
         - name: builder
