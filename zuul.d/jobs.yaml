@@ -41,23 +41,13 @@
 
 - job:
     name: contrail-vnc-build-package-ubuntu-base
+    parent: contrail-vnc-prepare-repo-sandbox
     description: |
       Job that tests Contrail VNC (controller, analytics, etc.) packaging
 
       This is a base job for testing packaging of Contrail VNC for Ubuntu-base
       distributions. Release-based variants of this job are then added
       to the Juniper/contrail-packages project.
-    files:
-      - ^debian/contrail/.*$
-    required-projects:
-      - Juniper/contrail-build
-      - Juniper/contrail-controller
-      - Juniper/contrail-generateDS
-      - Juniper/contrail-third-party
-      - Juniper/contrail-sandesh
-      - Juniper/contrail-vrouter
-      - Juniper/contrail-nova-vif-driver
-      - Juniper/contrail-common
     run: playbooks/packaging/contrail-vnc.yaml
 
 - job:
@@ -98,7 +88,7 @@
       - Juniper/contrail-web-core
       - Juniper/contrail-web-server-manager
       - Juniper/contrail-web-storage
-    run: playbooks/prepare-repo-sandbox/prepare-repo-sandbox
+    pre-run: playbooks/prepare-repo-sandbox/prepare-repo-sandbox
 
 - job:
     name: contrail-vnc-build-unittest-ubuntu-trusty
