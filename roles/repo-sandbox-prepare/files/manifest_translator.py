@@ -49,7 +49,7 @@ for project in manifest.xpath('//project'):
     zuul_project = get_project(zuul_var, name)
     head = subprocess.check_output(['git', 'symbolic-ref', 'HEAD'], cwd=zuul_var['executor']['work_root'] + '/' + zuul_project['src_dir'])
     project.attrib['remote'] = zuul_project['canonical_hostname']
-    project.attrib['revision'] = head
+    project.attrib['revision'] = head[:-1]
 
 with open(manifest_path, 'w') as manifest_file:
     manifest_file.write(dump_xml(manifest))
