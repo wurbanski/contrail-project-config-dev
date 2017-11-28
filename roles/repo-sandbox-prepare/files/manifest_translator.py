@@ -3,6 +3,7 @@ from __future__ import print_function
 import sys
 import yaml
 import lxml
+import subprocess
 from lxml import etree
 
 zuul_var_path = sys.argv[1]
@@ -10,6 +11,9 @@ manifest_path = sys.argv[2]
 
 def dump_xml(node):
     return etree.tostring(node, pretty_print=True).decode()
+
+def del_node(node):
+    node.getparent().remove(node)
 
 def get_project(zuul_var, short_name):
     for p in zuul_var['projects']:
@@ -27,7 +31,10 @@ project = manifest.find('//project[@name="{}"]'.format('contrail-controller'))
 project.attrib['remote'] = 'ddd'
 
 for remote in manifest.xpath('//remote'):
-    remote.getparent().remove(remote)
+    del_node(remote)
+
+for default in manifest.xpath('//default'):
+    del_node(default)
 
 remotes = {}
 for project in zuul_var['projects']:
@@ -40,7 +47,9 @@ for remote in remotes.values():
 for project in manifest.xpath('//project'):
     name = project.attrib['name']
     zuul_project = get_project(zuul_var, name)
+    head = subprocess.check_output(['git', 'symbolic-ref', 'HEAD'], cwd=zuul_var['executor']['work_root'] + '/' + zuul_project['src_dir'])
     project.attrib['remote'] = zuul_project['canonical_hostname']
+    project.attrib['revision'] = head
 
 with open(manifest_path, 'w') as manifest_file:
     manifest_file.write(dump_xml(manifest))
