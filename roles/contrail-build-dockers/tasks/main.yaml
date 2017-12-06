@@ -5,7 +5,7 @@
 - name: Clone contrail-container-builder repository
   git:
     repo: 'https://github.com/Juniper/contrail-container-builder'
-    version: 'def20a6a0ec648edbc6f6c11a43629767312f123'
+    version: '06ae9610f1b481eaca4fcfa3ce40a87bf3f98e82'
     force: yes
     dest: "{{ docker_build_dir }}"
 
