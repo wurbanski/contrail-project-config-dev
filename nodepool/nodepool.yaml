@@ -25,8 +25,8 @@ labels:
     min-ready: 2
     provides:
       - name: juniper-contrail-ci
-  - name: centos-7-small
-    image: centos-7
+  - name: centos-7.4-builder
+    image: centos-7.4
     min-ready: 0
     provides:
       - name: juniper-contrail-ci
