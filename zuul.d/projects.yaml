@@ -3,6 +3,7 @@
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
+        - contrail-vnc-docker-centos74
 
 - project:
     name: Juniper/contrail-vrouter
@@ -21,6 +22,7 @@
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
+        - contrail-vnc-docker-centos74
 
 - project:
     name: Juniper/contrail-generateDS
