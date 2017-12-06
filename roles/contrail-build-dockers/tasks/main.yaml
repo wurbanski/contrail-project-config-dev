@@ -28,7 +28,7 @@
 
 - name: Get a list of logs
   find:
-    paths: "{{ docker_build_dir }}"
+    paths: "{{ docker_build_dir }}/containers"
     patterns: '*contrail-container-builder*.log'
   register: loglist
 
@@ -42,5 +42,5 @@
   synchronize:
     mode: pull
     src: "{{ item.path }}.gz"
-    dest: "{{ zuul.executor.log_root }}/docker"
+    dest: "{{ zuul.executor.log_root }}/docker/"
   with_items: "{{ loglist.files }}"
