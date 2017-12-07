@@ -19,7 +19,7 @@ def get_project(zuul_var, short_name):
     for p in zuul_var['projects']:
         if p['short_name'] == short_name:
             return p
-    return None
+    raise Exception('Project with short name' + short_name + 'not found. Known projects are: ' + ','.join([p['short_name'] for p in zuul_var['projects']]))
 
 with open(zuul_var_path, 'r') as zuul_var_file:
   zuul_var = yaml.load(zuul_var_file)
