@@ -1,6 +1,7 @@
-- name: Set container provision dir
-  set_fact:
-    docker_provision_dir: '/tmp/contrail-container-deployer'
+- name: Debug hostvars 
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4
 
 - name: Clone contrail-ansible-deployer repository
   git:
@@ -9,3 +10,22 @@
     force: yes
     dest: "{{ docker_provision_dir }}"
 
+- name: Copy hosts template
+  template:
+    src: inventory/hosts.j2
+    dest: "{{ docker_provision_dir }}/inventory/hosts"
+
+- name: Copy vars template
+  template:
+    src: "inventory/group_vars/{{ item }}.j2"
+    dest: "{{ docker_provision_dir }}/inventory/{{ item }}"
+    with_item:
+      - all.yaml
+      - container_hosts.yaml
+
+- name: Provision Contrail with deploy.yml playbook
+  command: >
+    ansible-playbook -i inventory/hosts playbook/deploy.yml -v
+  become: yes
+  args:
+    chdir: "{{ docker_provision_dir }}"
