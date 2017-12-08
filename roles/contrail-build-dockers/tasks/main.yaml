@@ -14,6 +14,11 @@
   args:
     chdir: "{{ docker_build_dir }}"
 
+- name: Prepare container build configuration registry
+  shell: "echo '_CONTRAIL_REGISTRY_IP=10.84.56.38' >> common.env"
+  args:
+    chdir: "{{ docker_build_dir }}"
+
 - name: Prepare container build environment
   command: bash setup-for-build.sh
   become: true
