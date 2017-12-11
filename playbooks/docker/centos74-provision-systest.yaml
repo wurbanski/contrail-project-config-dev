@@ -3,5 +3,5 @@
     - role: contrail-provision-dockers
       docker_provision_dir: '/tmp/contrail-container-deployer'
       contrail_version: '4.1.0.0-8'
-      contrail_registry: 'michaelhenkel'
+      contrail_registry: '10.84.56.38:5000'
 
