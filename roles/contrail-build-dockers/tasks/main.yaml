@@ -15,7 +15,7 @@
     chdir: "{{ docker_build_dir }}"
 
 - name: Prepare container build configuration registry
-  shell: "echo 'CONTRAIL_REGISTRY=10.84.56.38:5000/{{ zuul.change }}' >> common.env"
+  shell: "echo 'CONTRAIL_REGISTRY=10.84.56.38:5000' >> common.env"
   args:
     chdir: "{{ docker_build_dir }}"
 
