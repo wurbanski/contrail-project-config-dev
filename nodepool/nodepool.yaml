@@ -48,7 +48,7 @@ providers:
       - name: centos-7.4
     pools:
       - name: ci-zuulv3
-        max-servers: 6
+        max-servers: 4
         availability-zones:
           - opencontrail-ci-zone
         networks:
