@@ -104,7 +104,14 @@
     name: contrail-vnc-docker-centos74
     voting: False
     run: playbooks/docker/centos74
+    dependencies:
+      - contrail-vnc-build-package-centos74
     nodeset:
       nodes:
         - name: builder
           label: ubuntu-xenial-builder
+
+- job:
+    name: contrail-vnc-build-package-centos74
+    parent: contrail-vnc-prepare-repo-sandbox
+    run: playbooks/zuulv3/self-test
