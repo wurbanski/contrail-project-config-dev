@@ -42,6 +42,8 @@
   vars:
     reponame: "{{ zuul.change }}-{{ zuul.patchset }}"
     src_dir: "{{ worker_package_dir }}"
+    executor_package_dir: "{{ zuul.executor.work_root }}/packages"
+    worker_package_dir: "{{ ansible_env.HOME }}/rpmbuild"
   tasks:
     - name: create destination directory
       file:
