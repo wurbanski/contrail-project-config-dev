@@ -8,6 +8,9 @@
     experimental:
       jobs:
         - contrail-vnc-docker-provision-centos74
+    experimental-jluk:
+      jobs:
+        - pulp-upload
 
 - project:
     name: Juniper/contrail-vrouter
