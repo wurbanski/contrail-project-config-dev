@@ -45,10 +45,10 @@
     executor_package_dir: "{{ zuul.executor.work_root }}/packages"
     worker_package_dir: "{{ ansible_env.HOME }}/rpmbuild"
   tasks:
-    - name: create destination directory
-      file:
-        state: directory
-        path: /home/zuul/{{ reponame }}
+    #- name: create destination directory
+    #  file:
+    #    state: directory
+    #    path: /home/zuul/{{ reponame }}
     - name: upload packages to aptly
       synchronize:
         src: "{{ executor_package_dir }}"
