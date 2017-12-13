@@ -112,10 +112,18 @@
 - job:
     name: job-a
     run: playbooks/zuulv3/self-test
+    nodeset:
+      nodes:
+        - name: ubuntu-trusty
+          label: ubuntu-trusty-builder
 
 - job:
     name: job-b
     run: playbooks/zuulv3/self-test
+    nodeset:
+      nodes:
+        - name: ubuntu-trusty
+          label: ubuntu-trusty-builder
 
 - job:
     name: contrail-vnc-build-package-centos74
