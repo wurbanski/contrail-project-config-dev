@@ -110,6 +110,14 @@
           label: ubuntu-xenial-builder
 
 - job:
+    name: job-a
+    run: playbooks/zuulv3/self-test
+
+- job:
+    name: job-b
+    run: playbooks/zuulv3/self-test
+
+- job:
     name: contrail-vnc-build-package-centos74
     parent: contrail-vnc-prepare-repo-sandbox
     run: playbooks/zuulv3/self-test

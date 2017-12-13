@@ -9,7 +9,10 @@
               - contrail-vnc-build-package-centos74
     experimental:
       jobs:
-        - contrail-vnc-docker-provision-centos74
+        - job-a
+        - job-b:
+            dependencies:
+              - job-a
     experimental-jluk:
       jobs:
         - pulp-upload
