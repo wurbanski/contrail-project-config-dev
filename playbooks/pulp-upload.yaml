@@ -58,7 +58,7 @@
     - name: create repo
       command: pulp-admin -u {{ site_pulp.pulp_user }} -p {{ site_pulp.pulp_password }} rpm repo create --repo-id {{ reponame }}
     - name: add packages to pulp
-      command: pulp-admin -u {{ site_pulp.pulp_user }} -p {{ site_pulp.pulp_password }} rpm repo uploads rpm --repo-id {{ reponame }} --dir /home/zuul/{{ reponame }}
+      command: pulp-admin -u {{ site_pulp.pulp_user }} -p {{ site_pulp.pulp_password }} rpm repo uploads rpm --repo-id {{ reponame }} --dir /home/zuul/{{ reponame }}/packages
     - name: publish repo
       command: pulp-admin -u {{ site_pulp.pulp_user }} -p {{ site_pulp.pulp_password }} rpm repo publish run --repo-id {{ reponame }}
     - name: remove package directory from pulp server
