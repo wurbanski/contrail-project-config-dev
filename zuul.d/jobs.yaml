@@ -104,8 +104,6 @@
     name: contrail-vnc-docker-centos74
     voting: False
     run: playbooks/docker/centos74
-    dependencies:
-      - contrail-vnc-build-package-centos74
     nodeset:
       nodes:
         - name: builder
