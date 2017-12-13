@@ -129,3 +129,5 @@
     name: pulp-upload
     voting: False
     run: playbooks/pulp-upload
+    secrets:
+      - site_pulp
