@@ -10,6 +10,7 @@
               shadow: Juniper/contrail-project-config-dev
           - codilime/contrail-zuul-jobs
           - Juniper/contrail-api
+          - Juniper/contrail-api-client
           - Juniper/contrail-nova-extensions
           - Juniper/contrail-analytics
       gerrit:
