@@ -12,7 +12,7 @@
               - job-a
     experimental-jluk:
       jobs:
-        - pulp-upload
+        - contrail-vnc-build-package-centos74
 
 - project:
     name: Juniper/contrail-vrouter
