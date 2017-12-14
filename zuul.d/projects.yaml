@@ -4,9 +4,6 @@
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
         - contrail-vnc-build-package-centos74
-        - contrail-vnc-docker-centos74:
-            dependencies:
-              - contrail-vnc-build-package-centos74
     experimental:
       jobs:
         - job-a

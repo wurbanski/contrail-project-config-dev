@@ -180,11 +180,6 @@
           label: ubuntu-trusty-builder
 
 - job:
-    name: contrail-vnc-build-package-centos74
-    parent: contrail-vnc-prepare-repo-sandbox
-    run: playbooks/zuulv3/self-test
-
-- job:
     name: contrail-vnc-docker-provision-centos74
     voting: False
     run: playbooks/docker/centos74-provision-systest
