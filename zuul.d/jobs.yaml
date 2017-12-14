@@ -27,7 +27,39 @@
     parent: null
     description: |
       A base job that prepares Contrail VNC sandbox using Android repo
+    required-projects:
+      - Juniper/contrail-api-client
+      - Juniper/contrail-build
+      - Juniper/contrail-analytics
+      - Juniper/contrail-common
+      - Juniper/contrail-controller
+      - Juniper/contrail-generateDS
+      - Juniper/contrail-heat
+      - Juniper/contrail-provisioning
+      - Juniper/contrail-neutron-plugin
+      - Juniper/contrail-nova-extensions
+      - Juniper/contrail-nova-vif-driver
+      - Juniper/contrail-packages
+      - Juniper/contrail-packaging
+      - Juniper/contrail-sandesh
+      - Juniper/contrail-third-party
+      - Juniper/contrail-vrouter
+      - Juniper/contrail-webui-third-party
+      - Juniper/contrail-web-controller
+      - Juniper/contrail-web-core
+      - Juniper/contrail-web-server-manager
+      - Juniper/contrail-web-storage
+    irrelevant-files:
+      - specs/.*
     pre-run: playbooks/contrail/pre
+    post-run:
+      - playbooks/base/post-ssh
+      - playbooks/base/post-logs
+    roles:
+      - zuul: codilime/zuul-jobs
+    timeout: 28800
+    secrets:
+      - site_logs
 
 - job:
     name: contrail-vnc-repo-build
@@ -38,6 +70,28 @@
       nodes:
         - name: builder
           label: ubuntu-xenial-small
+
+- job:
+    name: contrail-vnc-build-package-el-base
+    parent: contrail-vnc-base
+    voting: False
+    description: |
+      Job that tests Contrail VNC (controller, analytics, etc.) packaging
+
+      This is a base job for testing packaging of Contrail VNC for Enterprise
+      Linux based distributions (CentOS, RHEL). Release-based variants of this
+      job are then added to the Juniper/contrail-packages project.
+    run: playbooks/packaging/contrail-vnc-el
+    secrets:
+      - site_pulp
+
+- job:
+    name: contrail-vnc-build-package-centos74
+    parent: contrail-vnc-build-package-el-base
+    nodeset:
+      nodes:
+        - name: builder
+          label: centos-7.4-builder
 
 - job:
     name: contrail-vnc-build-package-ubuntu-base
