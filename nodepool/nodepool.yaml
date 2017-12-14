@@ -37,6 +37,7 @@ providers:
     cloud: jnpr-contrail-ci
     api-timeout: 60
     boot-timeout: 120
+    clean-floating-ips: true
     rate: 1.0
     ipv6-preferred: false
     image-type: 'qcow2'
@@ -81,8 +82,10 @@ diskimages:
       - centos-minimal
       - vm
       - growroot
-      - nodepool-base
       - epel
+      - cloud-init
+      - openssh-server
+      - nodepool-base
       - contrail-builder
     env-vars:
       TMPDIR: /opt/dib_tmp
@@ -90,6 +93,8 @@ diskimages:
       DIB_IMAGE_CACHE: /opt/dib_cache
       DIB_GRUB_TIMEOUT: '0'
       DIB_EPEL_DISABLED: '0'
+      DIB_YUM_MINIMAL_CREATE_INTERFACES: '0'
+      DIB_INSTALLTYPE_pip_and_virtualenv: package
   - name: ubuntu-xenial
     elements:
       - ubuntu
