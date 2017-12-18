@@ -14,3 +14,9 @@
       when: package_repo.status == 200
   roles:
     - zuulv3-self-test
+
+- hosts: all
+  tasks:
+    - name: debug1
+      debug:
+        msg: 123
