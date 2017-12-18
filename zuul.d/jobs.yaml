@@ -165,7 +165,7 @@
 
 - job:
     name: job-a
-    run: playbooks/zuulv3/self-test
+    run: playbooks/zuulv3/job-a
     nodeset:
       nodes:
         - name: ubuntu-trusty
