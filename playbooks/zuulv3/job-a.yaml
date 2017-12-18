@@ -2,7 +2,7 @@
   pre_tasks:
     - name: check for package repo existence
       uri:
-        url: http://10.84.5.81/pulp/repos/38333-2/
+        url: http://10.84.5.81/pulp/repos/38333-5/
       ignore_errors: yes
       register: package_repo
     - name: exit if repo exists
