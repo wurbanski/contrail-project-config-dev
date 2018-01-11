@@ -91,7 +91,7 @@
     nodeset:
       nodes:
         - name: builder
-          label: centos-7.4-builder
+          label: centos-7-4-builder
 
 - job:
     name: contrail-vnc-build-package-ubuntu-base
@@ -186,7 +186,7 @@
     nodeset:
       nodes:
         - name: contrail-aio
-          label: centos-7.4-builder
+          label: centos-7-4-builder
 
 - job:
     name: pulp-upload
