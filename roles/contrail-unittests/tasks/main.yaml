@@ -56,6 +56,7 @@
   become_user: root
   environment:
     BUILD_ONLY: 1
+    ZUUL_CHANGES: "{{ zuul.ref }}"
     CONTRAIL_COMPILE_WITHOUT_SYMBOLS: yes
     LC_ALL: "C"
 
