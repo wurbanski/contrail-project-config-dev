@@ -225,3 +225,21 @@
     check:
       jobs:
         - noop
+
+- project:
+    name: Juniper/contrail-project-config
+    check:
+      jobs:
+        - noop
+
+- project:
+    name: Juniper/contrail-ansible-deployer
+    check:
+      jobs:
+        - noop
+
+- project:
+    name: Juniper/contrail-container-builder
+    check:
+      jobs:
+        - noop

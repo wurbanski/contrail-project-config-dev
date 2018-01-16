@@ -47,3 +47,5 @@
           - Juniper/contrail-ansible-internal
           - Juniper/contrail-community-docs
           - Juniper/puppet-contrail
+          - Juniper/contrail-ansible-deployer
+          - Juniper/contrail-container-builder
