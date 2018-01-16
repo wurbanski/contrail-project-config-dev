@@ -3,8 +3,6 @@
     max-job-timeout: -1
     source:
       github:
-        config-projects:
-          - Juniper/contrail-project-config
         untrusted-projects:
           - codilime/zuul-jobs:
               shadow: Juniper/contrail-project-config
@@ -12,6 +10,8 @@
           - Juniper/contrail-api-client
           - Juniper/contrail-nova-extensions
       gerrit:
+        config-projects:
+          - Juniper/contrail-project-config
         untrusted-projects:
           - Juniper/contrail-analytics
           - Juniper/contrail-build
