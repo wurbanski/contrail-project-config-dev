@@ -39,10 +39,21 @@
       - site_logs
 
 - job:
+    name: contrail-src-base
+    parent: contrail-base
+    description: |
+      A base job that directly copies source code prepared by zuul to the builder node,
+      as opposed to the contrail-vnc-base job that uses Android repo to prepare the source tree.
+    pre-run: playbooks/contrail/src-pre
+    roles:
+      - zuul: codilime/zuul-jobs
+
+- job:
     name: contrail-vnc-base
     parent: contrail-base
     description: |
-      A base job that prepares Contrail VNC sandbox using Android repo
+      A base job that prepares Contrail VNC sandbox using Android repo,
+      as opposed to the contrail-src-base job that copies the sources directly.
     required-projects:
       - Juniper/contrail-api-client
       - Juniper/contrail-build
@@ -164,26 +175,36 @@
 
 - job:
     name: contrail-vnc-build-containers-centos74
-    parent: contrail-base
+    parent: contrail-src-base
     voting: False
+    description: |
+      A job that builds the Contrail containers using contrail-container-builder
+      and uploads them to a Docker registry.
+    irrelevant-files:
+      - specs/.*
+    required-projects:
+      - Juniper/contrail-container-builder
     run: playbooks/docker/centos74
     nodeset:
       nodes:
         - name: builder
           label: centos-7-4-builder
-    irrelevant-files:
-      - specs/.*
     secrets:
       - site_pulp
       - docker_registry
 
 - job:
     name: contrail-systest-centos74-kubernetes
+    parent: contrail-src-base
     voting: False
-    run: playbooks/docker/centos74-systest-kubernetes
-    parent: contrail-base
+    description: |
+      A job that deploys Contrail containers and a Kubernetes cluster
+      using contrail-ansible-deployer.
     irrelevant-files:
       - specs/.*
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+    run: playbooks/docker/centos74-systest-kubernetes
     nodeset:
       nodes:
         - name: contrail-aio
@@ -193,27 +214,20 @@
 
 - job:
     name: contrail-systest-centos74-kolla-ocata
-    parent: contrail-base
+    parent: contrail-src-base
     voting: False
+    description: |
+      A job that deploys Contrail containers using contrail-ansible-deployer,
+      OpenStack using Kolla and runs the CI sanity testsuite.
+    irrelevant-files:
+      - specs/.*
+    required-projects:
+      - Juniper/contrail-ansible-deployer
     run: playbooks/kolla/centos74-provision-kolla
     post-run: playbooks/sanitytest/post
     nodeset:
       nodes:
         - name: kolla-aio
           label: centos-7-4-builder-xxlarge
-    irrelevant-files:
-      - specs/.*
-    secrets:
-      - docker_registry
-
-- job:
-    name: contrail-provision-centos74
-    voting: False
-    run: playbooks/docker/centos74-provision
-    parent: contrail-base
-    nodeset:
-      nodes:
-        - name: contrail-aio
-          label: centos-7-4-builder
     secrets:
       - docker_registry
