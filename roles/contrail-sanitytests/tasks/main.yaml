@@ -55,3 +55,8 @@
 - name: Run the sanity test
   command: "{{ ansible_env.HOME }}/mount/contrail-test-ci/testrunner.sh run -t {{ ansible_env.HOME }}/testbed.py -m {{ ansible_env.HOME }}/mount -k /root/.ssh/id_rsa -f ci_sanity '{{ testrunner_image }}'"
   become: yes
+  ignore_errors: yes
+
+- name: test the xml report for failures
+  shell: "[ x\"$(grep testsuite /root/contrail-test-runs/*/reports/TESTS-TestSuites.xml  | grep -o  'failures=\\S\\+' | uniq)\" = x'failures=\"0\"' ]"
+  become: yes
