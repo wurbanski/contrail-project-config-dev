@@ -23,9 +23,6 @@
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
-    experimental-provision:
-      jobs:
-        - contrail-provision-centos74
 
 - project:
     name: Juniper/contrail-analytics
