@@ -1,9 +1,28 @@
 - project:
+    name: Juniper/contrail-analytics
+    check:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty
+        - contrail-vnc-specs-linter-subdir
+
+- project:
+    name: Juniper/contrail-common
+    check:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty
+
+- project:
+    name: Juniper/contrail-build
+    check:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty
+
+- project:
     name: Juniper/contrail-controller
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
-        - contrail-vnc-specs-linter
+        - contrail-vnc-specs-linter-subdir
         - contrail-vnc-build-package-centos74
         - contrail-vnc-build-containers-centos74:
             dependencies:
@@ -19,38 +38,7 @@
         - contrail-systest-centos74-kolla-ocata
 
 - project:
-    name: Juniper/contrail-vrouter
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
-
-- project:
-    name: Juniper/contrail-analytics
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
-        - contrail-vnc-specs-linter
-
-- project:
-    name: Juniper/contrail-sandesh
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
-
-- project:
-    name: Juniper/contrail-build
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
-
-- project:
     name: Juniper/contrail-generateDS
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
-
-- project:
-    name: Juniper/contrail-common
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
@@ -65,7 +53,25 @@
         - contrail-vnc-build-package-ubuntu-trusty
         - contrail-vnc-build-package-ubuntu-xenial
 
+- project:
+    name: Juniper/contrail-sandesh
+    check:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty
 
+- project:
+    name: Juniper/contrail-specs
+    check:
+      jobs:
+        - contrail-vnc-specs-linter
+
+- project:
+    name: Juniper/contrail-vrouter
+    check:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty
+
+# No-ops
 
 - project:
     name: Juniper/contrail-third-party
