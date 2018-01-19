@@ -1,3 +1,16 @@
+- name: get a list of package files
+  find:
+    paths: "{{ zuul.executor.work_root }}/packages/"
+    recurse: yes
+    patterns:
+      - '*.rpm'
+  register: package_list
+  delegate_to: localhost
+
+- name: check if directory contains packages to upload
+  meta: end_play
+  when: package_list.matched|int == 0
+
 - name: upload packages to pulp server
   synchronize:
     src: "{{ executor_package_dir }}"

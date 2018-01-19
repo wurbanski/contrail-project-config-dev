@@ -64,7 +64,7 @@
 #    - { name: 'contrail-test' }
     - { name: 'fabric-utils' }
     - { name: 'neutron-plugin-contrail' }
- 
+
 - name: Install nodejs 0.10.35
   yum:
     name: nodejs-0.10.35-1contrail.el7
@@ -93,7 +93,4 @@
       - --no-motd
       - --quiet
   delegate_to: "{{ inventory_hostname }}"
-
-- name: Get a list of packages
-  shell: ls -lR {{ansible_env.HOME }}/rpmbuild/RPMS/* {{ansible_env.HOME }}/rpmbuild/SRPMS/ || /bin/true
 
