@@ -37,6 +37,7 @@
     timeout: 28800
     secrets:
       - site_logs
+      - site_pulp
 
 - job:
     name: contrail-src-base
