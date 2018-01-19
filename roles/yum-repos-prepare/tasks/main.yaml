@@ -29,7 +29,7 @@
     name: contrail-tpc
     description: Contrail third-party dependencies
     file: contrail-tpc
-    baseurl: "http://{{ site_pulp.fqdn }}}/pulp/repos/opencontrail-tpc/"
+    baseurl: "http://{{ site_pulp.fqdn }}/pulp/repos/opencontrail-tpc/"
     enabled: yes
     gpgcheck: no
   become: yes
