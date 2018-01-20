@@ -1,8 +1,0 @@
-- hosts: all
-  roles:
-    - role: contrail-ansible-deployer
-      docker_provision_dir: '/tmp/contrail-container-deployer'
-      contrail_version: "38333-2"
-      openstack_version: ocata
-      deploy_kubernetes: False
-    - contrail-sanitytests
