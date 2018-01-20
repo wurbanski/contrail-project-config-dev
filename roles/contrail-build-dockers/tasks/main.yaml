@@ -1,13 +1,7 @@
 - name: Set paths
   set_fact:
-    docker_build_dir: "{{ ansible_env.HOME }}/contrail-container-builder"
+    docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
     rpm_repo_config_dir: /etc/yum.repos.d
-
-- name: Clone contrail-container-builder repository
-  git:
-    repo: 'https://github.com/Juniper/contrail-container-builder/'
-    force: yes
-    dest: "{{ docker_build_dir }}"
 
 - name: Apply temporary patches
   patch:
