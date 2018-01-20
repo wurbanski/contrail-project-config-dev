@@ -16,7 +16,7 @@
         - python2-requests
   roles:
     - role: contrail-ansible-deployer
-      docker_provision_dir: '/tmp/contrail-container-deployer'
+      docker_provision_dir: '{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-ansible-deployer'
       contrail_version: "{{ zuul.change }}-{{ zuul.patchset }}"
       openstack_version: ocata
       cloud_orchestrator: openstack

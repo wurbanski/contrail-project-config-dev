@@ -6,11 +6,6 @@
   with_items:
     - ansible
 
-- name: Clone contrail-ansible-deployer repository
-  git:
-    repo: 'https://github.com/Juniper/contrail-ansible-deployer'
-    dest: "{{ docker_provision_dir }}"
-
 - name: Copy hosts template
   template:
     src: inventory/hosts.j2
