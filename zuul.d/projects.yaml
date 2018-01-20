@@ -1,3 +1,12 @@
+- project-template:
+    name: noops
+    check:
+      jobs:
+        - noop
+    gate:
+      jobs:
+        - noop
+
 - project:
     name: Juniper/contrail-analytics
     check:
@@ -231,9 +240,8 @@
 
 - project:
     name: Juniper/contrail-project-config
-    check:
-      jobs:
-        - noop
+    templates:
+      - noops
 
 - project:
     name: Juniper/contrail-ansible-deployer
