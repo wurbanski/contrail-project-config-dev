@@ -95,7 +95,7 @@
       to the Juniper/contrail-packages project.
     files:
       - ^debian/contrail/.*$
-    run: playbooks/packaging/contrail-vnc.yaml
+    run: playbooks/packaging/contrail-vnc
 
 - job:
     name: contrail-vnc-build-package-el-base

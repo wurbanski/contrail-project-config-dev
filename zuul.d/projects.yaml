@@ -1,4 +1,10 @@
 - project-template:
+    name: unittests
+    check:
+      jobs:
+        - contrail-vnc-build-unittest-ubuntu-trusty
+
+- project-template:
     name: systests
     check:
       jobs:
@@ -17,6 +23,18 @@
         - noop
 
 - project-template:
+    name: systests-nogate
+    check:
+      jobs:
+        - contrail-vnc-build-package-centos74
+        - contrail-vnc-build-containers-centos74:
+            dependencies:
+              - contrail-vnc-build-package-centos74
+        - contrail-systest-centos74-kolla-ocata:
+            dependencies:
+              - contrail-vnc-build-containers-centos74
+
+- project-template:
     name: noops
     check:
       jobs:
@@ -27,64 +45,63 @@
 
 - project:
     name: Juniper/contrail-analytics
+    templates:
+      - unittests
+      - systests-nogate
     check:
       jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
         - contrail-vnc-specs-linter-subdir
 
 - project:
     name: Juniper/contrail-common
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
+    templates:
+      - unittests
+      - systests-nogate
 
 - project:
     name: Juniper/contrail-build
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
+    templates:
+      - unittests
+      - systests-nogate
 
 - project:
     name: Juniper/contrail-controller
+    templates:
+      - unittests
+      - systests-nogate
     check:
       jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
         - contrail-vnc-specs-linter-subdir
-        - contrail-vnc-build-package-centos74
-        - contrail-vnc-build-containers-centos74:
-            dependencies:
-              - contrail-vnc-build-package-centos74
-        - contrail-systest-centos74-kubernetes:
-            dependencies:
-              - contrail-vnc-build-containers-centos74
-        - contrail-systest-centos74-kolla-ocata:
-            dependencies:
-              - contrail-vnc-build-containers-centos74
     experimental-provision:
       jobs:
         - contrail-systest-centos74-kolla-ocata
 
 - project:
     name: Juniper/contrail-generateDS
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
+    templates:
+      - unittests
+      - systests-nogate
+      # flake8
 
 - project:
     name: Juniper/contrail-packages
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests-nogate
     experimental:
       jobs:
         - contrail-vnc-build-package-ubuntu-trusty
         - contrail-vnc-build-package-ubuntu-xenial
 
 - project:
+    name: Juniper/contrail-packaging
+    templates:
+      - systests-nogate
+
+- project:
     name: Juniper/contrail-sandesh
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
+    templates:
+      - unittests
+      - systests-nogate
 
 - project:
     name: Juniper/contrail-specs
@@ -94,9 +111,9 @@
 
 - project:
     name: Juniper/contrail-vrouter
-    check:
-      jobs:
-        - contrail-vnc-build-unittest-ubuntu-trusty
+    templates:
+      - unittests
+      - systests-nogate
 
 # No-ops
 
@@ -114,12 +131,6 @@
 
 - project:
     name: Juniper/contrail-nova-vif-driver
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-packaging
     check:
       jobs:
         - noop
@@ -273,6 +284,5 @@
 
 - project:
     name: Juniper/contrail-container-builder
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
