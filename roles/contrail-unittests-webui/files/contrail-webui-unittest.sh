@@ -3,9 +3,6 @@
 set -o pipefail
 set -xe
 
-#source /usr/local/jenkins/slave_scripts/ci-infra/ci-utils.sh
-
-#export WORKSPACE=$PWD
 export LOGDIR="$WORKSPACE"/../logs
 export TEST_REPORTS_DIR="$WORKSPACE"/../test-reports
 export COVERAGE_REPORTS_DIR="$WORKSPACE"/../coverage-reports
@@ -23,13 +20,12 @@ if [ -z $USER ]; then
     USER=jenkins
 fi
 
-if [ -z $REPO_NAME ] ; then
+if [ -z $REPO_NAME ]; then
     REPO_NAME=contrail-web-core
     echo "Default Repo Name: $REPO_NAME"
 fi
 
 function pre_test_setup() {
-
     #Update the featurePkg path in contrail-web-core/config/config.global.js  with Controller, Storage and Server Manager features
     cd $WORKSPACE/contrail-web-core
 
@@ -37,30 +33,26 @@ function pre_test_setup() {
     cat config/config.global.js | sed -e "s%/usr/src/contrail/contrail-web-controller%$WORKSPACE/contrail-web-controller%" > $WORKSPACE/contrail-web-core/config/config.global.js.tmp
     cp $WORKSPACE/contrail-web-core/config/config.global.js.tmp $WORKSPACE/contrail-web-core/config/config.global.js
     rm $WORKSPACE/contrail-web-core/config/config.global.js.tmp
-    #sleep 2
     touch config/config.global.js
 
     #Server Manager
     cat config/config.global.js | sed "/config.featurePkg.webController.enable/ a config.featurePkg.serverManager = {};\nconfig.featurePkg.serverManager.path='$WORKSPACE\/contrail-web-server-manager';\nconfig.featurePkg.serverManager.enable = true;" > $WORKSPACE/contrail-web-core/config/config.global.js.tmp
     cp $WORKSPACE/contrail-web-core/config/config.global.js.tmp $WORKSPACE/contrail-web-core/config/config.global.js
     rm $WORKSPACE/contrail-web-core/config/config.global.js.tmp
-    #sleep 2
     touch config/config.global.js
 
     # Storage
     cat config/config.global.js | sed "/config.featurePkg.webController.enable/ a config.featurePkg.webStorage = {};\nconfig.featurePkg.webStorage.path='$WORKSPACE\/contrail-web-storage';\nconfig.featurePkg.webStorage.enable = true;" > $WORKSPACE/contrail-web-core/config/config.global.js.tmp
     cp $WORKSPACE/contrail-web-core/config/config.global.js.tmp $WORKSPACE/contrail-web-core/config/config.global.js
     rm $WORKSPACE/contrail-web-core/config/config.global.js.tmp
-    #sleep 2
     touch config/config.global.js
 
     cd $WORKSPACE/contrail-web-core
     #fetch dependent packages
     make fetch-pkgs-dev
-
 }
 
-function run_all_webui_tests(){
+function run_all_webui_tests() {
     #Setup the Prod Environment
     make prod-env REPO=webController,serverManager,webStorage
     #Setup the Test Environment
@@ -79,7 +71,7 @@ function run_all_webui_tests(){
     ./webroot/test/ui/run_tests.sh 2>&1 | tee $LOGDIR/web_storage_unittests.log
 }
 
-function run_webui_controller_tests(){
+function run_webui_controller_tests() {
     cd $WORKSPACE/contrail-web-core
 
     #Setup the Prod Environment
@@ -92,7 +84,7 @@ function run_webui_controller_tests(){
     ./webroot/test/ui/run_tests.sh 2>&1 | tee $LOGDIR/web_controller_unittests.log
 }
 
-function run_webui_server_manager_tests(){
+function run_webui_server_manager_tests() {
     cd $WORKSPACE/contrail-web-core
 
     #Setup the Prod Environment
@@ -105,8 +97,7 @@ function run_webui_server_manager_tests(){
     ./webroot/test/ui/run_tests.sh 2>&1 | tee $LOGDIR/web_server_manager_unittests.log
 }
 
-
-function run_webui_storage_tests(){
+function run_webui_storage_tests() {
     cd $WORKSPACE/contrail-web-core
 
     #Setup the Prod Environment
@@ -117,25 +108,24 @@ function run_webui_storage_tests(){
     # Run Storage related Unit Testcase
     cd $WORKSPACE/contrail-web-storage
     ./webroot/test/ui/run_tests.sh 2>&1 | tee $LOGDIR/web_storage_unittests.log
-
 }
 
 # Build unittests
 function build_unittest() {
     case "$REPO_NAME" in
-       "contrail-web-controller")
+        "contrail-web-controller")
             echo "Run all UT for Contrail Web Controller repo."
             run_webui_controller_tests
             ;;
-       "contrail-web-server-manager")
+        "contrail-web-server-manager")
             echo "Run all UT for Contrail Web Server Manager repo."
             run_webui_server_manager_tests
             ;;
-       "contrail-web-storage")
+        "contrail-web-storage")
             echo "Run all UT for Contrail Web Storage repo"
             run_webui_storage_tests
             ;;
-       *)
+        *)
             echo "Run all UT for Contrail Web * repo"
             run_all_webui_tests
             ;;
@@ -151,8 +141,8 @@ function copy_reports(){
 
     echo "info: gathering XML coverage reports..."
     for p in controller server-manager storage; do
-	src_dir=contrail-web-$p/$report_dir/coverage
-	cp -p $src_dir/*/phantomjs/cobertura-coverage.xml $COVERAGE_REPORTS_DIR/${p}-cobertura-coverage.xml || true
+        src_dir=contrail-web-$p/$report_dir/coverage
+        cp -p $src_dir/*/phantomjs/cobertura-coverage.xml $COVERAGE_REPORTS_DIR/${p}-cobertura-coverage.xml || true
     done
 }
 
@@ -169,5 +159,4 @@ function main() {
 
 env
 main $*
-test_wait
 echo Success
