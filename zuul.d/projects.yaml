@@ -269,30 +269,25 @@
 
 - project:
     name: Juniper/contrail-web-controller
-    check:
-      jobs:
-        - noop
+    templates:
+      - unittests-webui
 
 - project:
     name: Juniper/contrail-webui-third-party
-    check:
-      jobs:
-        - noop
+    templates:
+      - unittests-webui
 
 - project:
     name: Juniper/contrail-web-server-manager
-    check:
-      jobs:
-        - noop
+    templates:
+      - unittests-webui
 
 - project:
     name: Juniper/contrail-web-storage
-    check:
-      jobs:
-        - noop
+    templates:
+      - unittests-webui
 
 - project:
     name: Juniper/contrail-third-party-cache
-    check:
-      jobs:
-        - noop
+    templates:
+      - unittests-webui
