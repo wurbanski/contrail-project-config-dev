@@ -3,6 +3,9 @@
     check:
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
+    gate:
+      jobs:
+        - noop
 
 - project-template:
     name: unittests-webui
@@ -53,7 +56,7 @@
     name: Juniper/contrail-analytics
     templates:
       - unittests
-      - systests-nogate
+      - systests
     check:
       jobs:
         - contrail-vnc-specs-linter-subdir
@@ -68,19 +71,19 @@
     name: Juniper/contrail-common
     templates:
       - unittests
-      - systests-nogate
+      - systests
 
 - project:
     name: Juniper/contrail-build
     templates:
       - unittests
-      - systests-nogate
+      - systests
 
 - project:
     name: Juniper/contrail-controller
     templates:
       - unittests
-      - systests-nogate
+      - systests
     check:
       jobs:
         - contrail-vnc-specs-linter-subdir
@@ -92,13 +95,13 @@
     name: Juniper/contrail-generateDS
     templates:
       - unittests
-      - systests-nogate
+      - systests
       # flake8
 
 - project:
     name: Juniper/contrail-packages
     templates:
-      - systests-nogate
+      - systests
     experimental:
       jobs:
         - contrail-vnc-build-package-ubuntu-trusty
@@ -107,16 +110,18 @@
 - project:
     name: Juniper/contrail-packaging
     templates:
-      - systests-nogate
+      - systests
 
 - project:
     name: Juniper/contrail-sandesh
     templates:
       - unittests
-      - systests-nogate
+      - systests
 
 - project:
     name: Juniper/contrail-specs
+    templates:
+      - noops
     check:
       jobs:
         - contrail-vnc-specs-linter
@@ -125,123 +130,105 @@
     name: Juniper/contrail-vrouter
     templates:
       - unittests
-      - systests-nogate
-
-# No-ops
+      - systests
 
 - project:
     name: Juniper/contrail-third-party
-    check:
-      jobs:
-        - noop
+    templates:
+      - unittests
+      - systests
 
 - project:
     name: Juniper/contrail-neutron-plugin
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
+      # flake8
 
 - project:
     name: Juniper/contrail-nova-vif-driver
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
+      # flake8
 
 - project:
     name: Juniper/contrail-provisioning
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/contrail-test
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/contrail-fabric-utils
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/horizon
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/nova
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-server-manager
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/contrail-puppet
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/contrail-heat
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
+      # flake8
 
 - project:
     name: Juniper/contrail-vcenter-plugin
-    check:
-      jobs:
-        - noop
+    templates:
+      - noops
 
 - project:
     name: Juniper/contrail-horizon
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/contrail-test-ci
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
 
 - project:
     name: Juniper/contrail-docker
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
+      # validate-ansible
 
 - project:
     name: Juniper/contrail-ansible
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
+      # validate-ansible
 
 - project:
     name: Juniper/contrail-ansible-internal
-    check:
-      jobs:
-        - noop
+    templates:
+      - systests
+      # validate-ansible
+      # ansible-unittests
 
 - project:
     name: Juniper/contrail-community-docs
-    check:
-      jobs:
-        - noop
+    templates:
+      - noops
 
 - project:
     name: Juniper/puppet-contrail
-    check:
-      jobs:
-        - noop
+    templates:
+      - noops
 
 - project:
     name: Juniper/contrail-project-config
@@ -263,37 +250,38 @@
     templates:
       - systests
 
-
-
-
-
-
 - project:
     name: Juniper/contrail-web-core
     templates:
       - unittests-webui
+      - systests
 
 - project:
     name: Juniper/contrail-web-controller
     templates:
       - unittests-webui
+      - systests
 
 - project:
     name: Juniper/contrail-webui-third-party
     templates:
       - unittests-webui
+      - systests
 
 - project:
     name: Juniper/contrail-web-server-manager
     templates:
       - unittests-webui
+      - systests
 
 - project:
     name: Juniper/contrail-web-storage
     templates:
       - unittests-webui
+      - systests
 
 - project:
     name: Juniper/contrail-third-party-cache
     templates:
       - unittests-webui
+      - systests
