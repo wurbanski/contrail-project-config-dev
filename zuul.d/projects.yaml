@@ -5,6 +5,12 @@
         - contrail-vnc-build-unittest-ubuntu-trusty
 
 - project-template:
+    name: unittests-webui
+    check:
+      jobs:
+        - contrail-vnc-unittest-webui
+
+- project-template:
     name: systests
     check:
       jobs:
@@ -154,24 +160,6 @@
         - noop
 
 - project:
-    name: Juniper/contrail-web-core
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-web-controller
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-webui-third-party
-    check:
-      jobs:
-        - noop
-
-- project:
     name: Juniper/horizon
     check:
       jobs:
@@ -197,24 +185,6 @@
 
 - project:
     name: Juniper/contrail-heat
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-web-server-manager
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-web-storage
-    check:
-      jobs:
-        - noop
-
-- project:
-    name: Juniper/contrail-third-party-cache
     check:
       jobs:
         - noop
@@ -286,3 +256,43 @@
     name: Juniper/contrail-container-builder
     templates:
       - systests
+
+
+
+
+
+
+- project:
+    name: Juniper/contrail-web-core
+    templates:
+      - unittests-webui
+
+- project:
+    name: Juniper/contrail-web-controller
+    check:
+      jobs:
+        - noop
+
+- project:
+    name: Juniper/contrail-webui-third-party
+    check:
+      jobs:
+        - noop
+
+- project:
+    name: Juniper/contrail-web-server-manager
+    check:
+      jobs:
+        - noop
+
+- project:
+    name: Juniper/contrail-web-storage
+    check:
+      jobs:
+        - noop
+
+- project:
+    name: Juniper/contrail-third-party-cache
+    check:
+      jobs:
+        - noop
