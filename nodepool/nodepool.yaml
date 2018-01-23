@@ -22,7 +22,7 @@ labels:
       - name: juniper-contrail-ci
   - name: ubuntu-trusty-builder
     image: ubuntu-trusty
-    min-ready: 1
+    min-ready: 0
     provides:
       - name: juniper-contrail-ci
   - name: centos-7-4-builder
@@ -144,4 +144,3 @@ diskimages:
       DIB_DISTRIBUTION_MIRROR: 'http://10.84.5.38:8000/ubuntu'
       DIB_DEBOOTSTRAP_EXTRA_ARGS: '--no-check-gpg'
       DIB_DEBIAN_COMPONENTS: 'main,universe'
-
