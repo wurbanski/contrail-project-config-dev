@@ -92,7 +92,11 @@
     manager: independent
     trigger:
       timer:
-        - time: "0 0 * * *"
+        - time: "*/30 * * * *"
+    success:
+      stats:
+    failure:
+      stats:
 
 - pipeline:
     name: experimental
