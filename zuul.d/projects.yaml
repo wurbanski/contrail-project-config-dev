@@ -4,6 +4,7 @@
       jobs:
         - contrail-vnc-build-unittest-ubuntu-trusty
     gate:
+      queue: contrail-vnc
       jobs:
         - noop
 
@@ -28,6 +29,7 @@
         #    dependencies:
         #      - contrail-vnc-build-containers-centos74
     gate:
+      queue: contrail-vnc
       jobs:
         - noop
 
@@ -49,6 +51,7 @@
       jobs:
         - noop
     gate:
+      queue: contrail-vnc
       jobs:
         - noop
 
