@@ -18,6 +18,7 @@
         - contrail-self-test:
             vars:
               release_type: nightly
+        - contrail-self-test-default
 
 - project:
     name: Juniper/contrail-vrouter

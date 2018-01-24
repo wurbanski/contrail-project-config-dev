@@ -190,6 +190,16 @@
       - Juniper/contrail-packages
 
 - job:
+    name: contrail-self-test-default
+    run: playbooks/contrail/self-test
+    nodeset:
+      nodes:
+        - name: ubuntu-trusty
+          label: ubuntu-trusty-builder
+    required-projects:
+      - Juniper/contrail-packages
+
+- job:
     name: contrail-vnc-docker-provision-centos74
     voting: False
     run: playbooks/docker/centos74-provision-systest
