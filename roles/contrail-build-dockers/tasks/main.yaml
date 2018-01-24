@@ -3,14 +3,6 @@
     docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
     rpm_repo_config_dir: /etc/yum.repos.d
 
-- name: Apply temporary patches
-  patch:
-    src: "{{ item.patch }}"
-    basedir: "{{ item.path }}"
-    strip: 1
-  with_items:
-    - { patch: 'cfg_api_amqp.patch', path: "{{ docker_build_dir }}" }
-
 - name: Prepare build configuration - common.env
   copy:
     content: |
