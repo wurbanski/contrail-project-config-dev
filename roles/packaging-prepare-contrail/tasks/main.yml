@@ -1,6 +1,7 @@
 - name: Prepare packaging variables
   contrail_packaging:
     zuul: "{{ zuul }}"
+    release_type: "{{ release_type }}"
 
 - name: Add a repository with Contrail dependencies
   apt_repository:
