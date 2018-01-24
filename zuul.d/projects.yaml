@@ -13,6 +13,9 @@
     experimental-jluk:
       jobs:
         - contrail-vnc-build-package-centos74
+    periodic-nightly:
+      jobs:
+        - job-a
 
 - project:
     name: Juniper/contrail-vrouter

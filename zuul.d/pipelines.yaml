@@ -27,6 +27,13 @@
       https://github.com/Juniper/contrail-infra/wiki/Zuul-v3-testing-in-OpenContrail-CI
 
 - pipeline:
+    name: periodic-nightly
+    manager: independent
+    trigger:
+      timer:
+        - time: "0 0 * * *"
+
+- pipeline:
     name: experimental
     description: On-demand pipeline for testing jobs.
     manager: independent
