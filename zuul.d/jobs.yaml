@@ -186,6 +186,8 @@
       nodes:
         - name: ubuntu-trusty
           label: ubuntu-trusty-builder
+    required-projects:
+      - Juniper/contrail-packages
 
 - job:
     name: contrail-vnc-docker-provision-centos74
