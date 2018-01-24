@@ -248,6 +248,10 @@
     name: Juniper/contrail-container-builder
     templates:
       - systests
+    experimental:
+      jobs:
+        - contrail-vnc-build-containers-centos74-dev
+
 
 - project:
     name: Juniper/contrail-web-core
