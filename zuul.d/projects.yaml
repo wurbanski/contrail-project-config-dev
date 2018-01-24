@@ -15,7 +15,9 @@
         - contrail-vnc-build-package-centos74
     periodic-nightly:
       jobs:
-        - job-a
+        - contrail-self-test:
+            vars:
+              release_type: nightly
 
 - project:
     name: Juniper/contrail-vrouter
