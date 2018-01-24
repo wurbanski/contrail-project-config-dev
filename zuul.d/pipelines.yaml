@@ -77,9 +77,11 @@
       gerrit:
         Verified: 2
         submit: true
+      stats:
     failure:
       gerrit:
         Verified: -2
+      stats:
     footer-message: |
 
       This is a pipeline from the new version of the OpenContrail CI stack. For more information, see:
