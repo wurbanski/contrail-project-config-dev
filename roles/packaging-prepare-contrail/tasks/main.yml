@@ -73,6 +73,6 @@
 - name: Create orig tarball
   shell: |
       fakeroot debian/rules get-orig-source
-      mv contrail_{{ packaging.version.upstream }}.orig.tar.gz ../
+      mv contrail_{{ packaging.full_version }}.orig.tar.gz ../
   args:
     chdir: "{{ packaging.target_dir }}"
