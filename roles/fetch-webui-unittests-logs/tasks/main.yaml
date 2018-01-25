@@ -19,7 +19,7 @@
   become: true
 
 - stat:
-  path: "{{ ansible_env.HOME }}/test-reports"
+    path: "{{ ansible_env.HOME }}/test-reports"
   register: test_reports_dir
   become: true
 
@@ -33,7 +33,7 @@
   become: true
 
 - stat:
-  path: "{{ ansible_env.HOME }}/coverage-reports"
+    path: "{{ ansible_env.HOME }}/coverage-reports"
   register: coverage_reports_dir
   become: true
 
