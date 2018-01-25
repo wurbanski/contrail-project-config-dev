@@ -94,7 +94,7 @@
     manager: independent
     trigger:
       timer:
-        - time: "*/30 * * * *"
+        - time: "0 0 * * *"
     success:
       stats:
     failure:
