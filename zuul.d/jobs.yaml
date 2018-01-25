@@ -285,7 +285,7 @@
     required-projects:
       - Juniper/contrail-container-builder
     pre-run: playbooks/docker/docker-pre
-    run: playbooks/docker/centos74
+    run: playbooks/docker/centos74-nightly
     nodeset:
       nodes:
         - name: builder
