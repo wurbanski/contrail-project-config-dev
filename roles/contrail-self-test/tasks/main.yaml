@@ -2,4 +2,19 @@
   contrail_packaging:
     zuul: "{{ zuul }}"
     release_type: "{{ release_type }}"
+  ignore_errors: True
 
+- name: Check if variable has been defined
+  debug:
+    var: contrail_repository
+
+- name: Check if variable has been defined
+  debug:
+    var: test
+
+- name: Store random variable with zuul_return
+  zuul_return:
+    data:
+      contrail_repository: test_me
+  delegate_to: localhost
+  when: 'release_type == "nightly"'

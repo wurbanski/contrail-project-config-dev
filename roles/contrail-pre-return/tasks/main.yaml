@@ -1,0 +1,7 @@
+- name: Return some random variable
+  zuul_return:
+    data:
+      test:
+        variable: test-value
+  delegate_to: localhost
+ 
