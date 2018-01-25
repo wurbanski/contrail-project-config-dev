@@ -26,7 +26,7 @@
 
 - name: 
   debug:
-    msg: '{% if len(contrail_registry.stdout) != 0 %}{{ contrail_registry.stdout }}{% else %}{{ release_type }}{% endif %}'
+    msg: '{% if (contrail_registry.stdout | length) > 0 %}{{ contrail_registry.stdout }}{% else %}{{ release_type }}{% endif %}'
 
 - name: Store random variable with zuul_return
   zuul_return:
