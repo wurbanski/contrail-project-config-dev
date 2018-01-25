@@ -20,6 +20,14 @@
   debug:
     var: zuul
 
+- name: Get zuul variable
+  command: 'git config --global zuul.contrail-registry'
+  register: contrail_registry
+
+- name: 
+  debug:
+    msg: '{% if len(contrail_registry.stdout) != 0 %}{{ contrail_registry.stdout }}{% else %}{{ release_type }}{% endif %}'
+
 - name: Store random variable with zuul_return
   zuul_return:
     data:

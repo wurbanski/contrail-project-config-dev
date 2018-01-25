@@ -17,3 +17,6 @@
       zuul:
         zuul_returned_variable: zuul_returned_value
   delegate_to: localhost
+
+- name: Save variable
+  command: 'git config --global zuul.contrail-registry http://10.8.84.5:1234/'
