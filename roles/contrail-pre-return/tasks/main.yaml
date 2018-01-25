@@ -1,7 +1,19 @@
-- name: Return some random variable
+- name: Return some random variable - dict
   zuul_return:
     data:
       test:
         variable: test-value
   delegate_to: localhost
+
+- name: Return some random variable - flat
+  zuul_return:
+    data:
+      test_flat: flatvalue
+  delegate_to: localhost
  
+- name: Return some random variable - zuul
+  zuul_return:
+    data:
+      zuul:
+        zuul_returned_variable: zuul_returned_value
+  delegate_to: localhost

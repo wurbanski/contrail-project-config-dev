@@ -12,6 +12,14 @@
   debug:
     var: test
 
+- name: Check if variable has been defined
+  debug:
+    var: test_flat
+
+- name: Check if variable has been defined
+  debug:
+    var: zuul
+
 - name: Store random variable with zuul_return
   zuul_return:
     data:
