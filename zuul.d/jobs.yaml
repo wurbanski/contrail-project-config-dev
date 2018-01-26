@@ -210,7 +210,9 @@
       - specs/.*
     required-projects:
       - Juniper/contrail-container-builder
-    pre-run: playbooks/docker-dev/docker-pre
+    pre-run:
+      - playbooks/docker-dev/setup-docker-registry
+      - playbooks/docker-dev/docker-pre
     run: playbooks/docker-dev/centos74
     nodeset:
       nodes:
@@ -255,6 +257,28 @@
         - name: kolla-aio
           label: centos-7-4-builder-xxlarge
     secrets:
+      - docker_registry
+
+- job:
+    name: contrail-systest-centos74-kolla-ocata-dev
+    parent: contrail-src-base
+    description: |
+      A job that deploys Contrail containers using contrail-ansible-deployer,
+      OpenStack using Kolla and runs the CI sanity testsuite.
+    irrelevant-files:
+      - specs/.*
+    required-projects:
+      - Juniper/contrail-ansible-deployer
+    pre-run:
+      - playbooks/docker-dev/setup-docker-registry
+    run: playbooks/kolla-dev/centos74-provision-kolla
+    post-run: playbooks/sanitytest/post
+    nodeset:
+      nodes:
+        - name: kolla-aio
+          label: centos-7-4-builder-xxlarge
+    secrets:
+      - site_pulp
       - docker_registry
 
 # XXX(kklimonda): temporary jobs to test periodic pipelines
