@@ -5,7 +5,7 @@
 
 - name: Check if Zuul overrode the registry port
   stat:
-    path: ./saved_vars.yaml
+    path: "{{ zuul.executor.work_root }}/saved_vars.yaml"
   register: varfile
   delegate_to: localhost
 
