@@ -7,7 +7,7 @@
   roles:
     - setup-docker-registry
 
-- hosts: all
+- hosts: builder
   roles:
     - role: docker-dependencies-dev
       vars:
