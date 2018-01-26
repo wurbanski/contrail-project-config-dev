@@ -11,7 +11,7 @@
 
 - name: Get the overridden registry port
   include_vars:
-    file: ./saved_vars.yaml
+    file: "{{ zuul.executor.work_root }}/saved_vars.yaml"
   when: varfile.stat.isreg is defined and varfile.stat.isreg
 
 - name: Set default registry port if not overridden
