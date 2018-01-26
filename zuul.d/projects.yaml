@@ -12,7 +12,10 @@
               - job-a
     experimental-jluk:
       jobs:
-        - contrail-vnc-build-package-centos74
+        - a-child
+        - a-dependant:
+            dependencies:
+              - a-child
     periodic-nightly:
       jobs:
         - contrail-self-test:

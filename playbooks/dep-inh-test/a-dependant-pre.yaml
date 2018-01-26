@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+    - debug:
+        var: zuul
+    - debug:
+        var: hostvars
+    - zuul_return:
+        data:
+          from_a_dependant_pre: a_dependant_pre_value
+      delegate_to: localhost
+    - zuul_return:
+        data:
+          zuul:
+            zuul_from_a_dependant_pre: zuul_a_dependant_pre_value
+      delegate_to: localhost

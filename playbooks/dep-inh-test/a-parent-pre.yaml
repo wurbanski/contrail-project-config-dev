@@ -1,0 +1,11 @@
+- hosts: all
+  tasks:
+    - zuul_return:
+        data:
+          from_a_parent_pre: a_parent_pre_value
+      delegate_to: localhost
+    - zuul_return:
+        data:
+          zuul:
+            zuul_from_a_parent_pre: zuul_a_parent_pre_value
+      delegate_to: localhost

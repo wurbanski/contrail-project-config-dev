@@ -214,3 +214,33 @@
     run: playbooks/pulp-upload
     secrets:
       - site_pulp
+
+- job:
+    name: a-parent
+    parent: null
+    pre-run: playbooks/dep-inh-test/a-parent-pre
+    nodeset:
+      nodes:
+        - name: ubuntu-trusty
+          label: ubuntu-trusty-builder
+
+- job:
+    name: a-child
+    parent: a-parent
+    pre-run: playbooks/dep-inh-test/a-child-pre
+    run: playbooks/test/a-child-run
+    nodeset:
+      nodes:
+        - name: ubuntu-trusty
+          label: ubuntu-trusty-builder
+
+- job:
+    name: a-dependant
+    parent: null
+    pre-run: playbooks/dep-inh-test/a-dependant-pre
+    run: playbooks/test/a-dependant-run
+    nodeset:
+      nodes:
+        - name: ubuntu-trusty
+          label: ubuntu-trusty-builder
+
