@@ -71,6 +71,7 @@
       - Juniper/contrail-packages
       - Juniper/contrail-packaging
       - Juniper/contrail-sandesh
+      - Juniper/contrail-specs
       - Juniper/contrail-third-party
       - Juniper/contrail-test
       - Juniper/contrail-test-ci
