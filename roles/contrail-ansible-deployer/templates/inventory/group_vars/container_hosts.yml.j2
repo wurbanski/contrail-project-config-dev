@@ -1,4 +1,4 @@
-CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ docker_registry.port }}"
+CONTAINER_REGISTRY: "{{ docker_registry.fqdn }}:{{ registry_port }}"
 REGISTRY_PRIVATE_SECURE: false
 REGISTRY_PRIVATE_INSECURE: true
 contrail_configuration:
