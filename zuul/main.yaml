@@ -4,7 +4,7 @@
     source:
       github:
         untrusted-projects:
-          - codilime/zuul-jobs:
+          - Juniper/zuul-jobs:
               shadow: Juniper/contrail-project-config
           - codilime/contrail-zuul-jobs
           - Juniper/contrail-api-client
