@@ -1,6 +1,6 @@
 - name: Set paths
   set_fact:
-    docker_build_dir: "{{ ansible_env.HOME }}/src/review.opencontrail.org/Juniper/contrail-container-builder"
+    docker_build_dir: "{{ ansible_env.HOME }}/src/review2.opencontrail.org/Juniper/contrail-container-builder"
     rpm_repo_config_dir: /etc/yum.repos.d
 
 - name: Check if Zuul overrode the registry port
